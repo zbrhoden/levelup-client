@@ -19,7 +19,18 @@ export const createEvent = (newEvent) => {
         .then(res => res.json())
 }
 
-export const joinEvent = (eventId) => {
+export const leaveEvent = eventId => {
+    return fetch(`http://localhost:8000/events/${ eventId }/signup`, {
+        method: "DELETE",
+        headers:{
+            "Authorization": `Token ${localStorage.getItem("lu_token")}`
+        }
+    })
+        .then(response => response.json())
+        .then(getEvents)
+}
+
+export const joinEvent = eventId => {
     return fetch(`http://localhost:8000/events/${ eventId }/signup`, {
         method: "POST",
         headers:{
@@ -27,15 +38,6 @@ export const joinEvent = (eventId) => {
         }
     })
         .then(response => response.json())
-}
-
-export const leaveEvent = (eventId) => {
-    return fetch(`http://localhost:8000/events/${ eventId }/signup`, {
-        method: "DELETE",
-        headers:{
-            "Authorization": `Token ${localStorage.getItem("lu_token")}`
-        }
-    })
         .then(getEvents)
 }
 
