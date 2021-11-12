@@ -25,54 +25,11 @@ export const GameForm = () => {
         getGameTypes().then(data => setGameTypes(data))
     }, [])
 
-    /*
-        REFACTOR CHALLENGE START
-
-        Can you refactor this code so that all property
-        state changes can be handled with a single function
-        instead of five functions that all, largely, do
-        the same thing?
-
-        One hint: [event.target.name]
-    */
-
     const handleControlledInputChange = (event) => {
         const newGame = Object.assign({}, currentGame)
         newGame[event.target.name] = event.target.value
         setCurrentGame(newGame)
     }
-
-
-    const changeGameTitleState = (event) => {
-        const newGameState = { ...currentGame }
-        newGameState.title = event.target.value
-        setCurrentGame(newGameState)
-    }
-
-    const changeGameMakerState = (event) => {
-        const newGameState = { ...currentGame }
-        newGameState.maker = event.target.value
-        setCurrentGame(newGameState)
-    }
-
-    const changeGamePlayersState = (event) => {
-        const newGameState = { ...currentGame }
-        newGameState.numberOfPlayers = event.target.value
-        setCurrentGame(newGameState)
-    }
-
-    const changeGameSkillLevelState = (event) => {
-        const newGameState = { ...currentGame }
-        newGameState.skillLevel = event.target.value
-        setCurrentGame(newGameState)
-    }
-
-    const changeGameTypeState = (event) => {
-        const newGameState = { ...currentGame }
-        newGameState.gameTypeId = event.target.value
-        setCurrentGame(newGameState)
-    }
-    /* REFACTOR CHALLENGE END */
 
     return (
         <form className="gameForm">
